@@ -47,7 +47,9 @@ function startGame() {
 }
 
 // Function that checks for when game is over
-
+function checkGameOver() {
+    return checkWins() || checkTies();
+}
 
 // Function that checks for all winning 3-in-a-rows and tied games
 function checkWins() {
