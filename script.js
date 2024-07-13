@@ -66,3 +66,11 @@ function checkWins() {
     }
     return false;
 }
+
+function checkTies() {
+    if (!gameBoard.board.includes('')) {
+        console.log("It's a tie!");
+        return true;
+    }
+    return false;
+}
