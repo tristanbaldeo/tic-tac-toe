@@ -1,5 +1,5 @@
 // Initialize game state and current player
-let GameOver = false;
+let gameOver = false;
 let currentPlayer = null;
 
 // Create and store players as objects that control game flow
@@ -31,7 +31,22 @@ const gameBoard = {
 gameBoard.display();
 
 // Function that receives player input and switches between players after each move
+const readline = require("readline");
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+
+function startGame() {
+    if (!gameOver) {
+        readline.question(`${currentPlayer.name}, enter your move (0-8): `, (move) => {
+            playerMove(parseInt(move));
+        });
+    }
+}
 
 // Function that checks for when game is over
+
 
 // Function that checks for all winning 3-in-a-rows and tied games
