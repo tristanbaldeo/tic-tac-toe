@@ -32,6 +32,7 @@ gameBoard.display();
 
 // Function that receives player input and switches between players after each move
 const readline = require("readline");
+const { start } = require("repl");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -40,10 +41,14 @@ const rl = readline.createInterface({
 
 function startGame() {
     if (!gameOver) {
-        readline.question(`${currentPlayer.name}, enter your move (0-8): `, (move) => {
+        rl.question(`${currentPlayer.name}, enter your move (0-8): `, (move) => {
             playerMove(parseInt(move));
         });
     }
+}
+
+function switchPlayer() {
+    currentPlayer = currentPlayer == player1 ? player2 : player1
 }
 
 // Function that checks for when game is over
