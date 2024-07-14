@@ -32,7 +32,6 @@ gameBoard.display();
 
 // Function that receives player input and switches between players after each move
 const readline = require("readline");
-const { start } = require("repl");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -44,6 +43,23 @@ function startGame() {
         rl.question(`${currentPlayer.name}, enter your move (0-8): `, (move) => {
             playerMove(parseInt(move));
         });
+    }
+}
+
+function playerMove(position) {
+    if (gameBoard.board[position] === '') {
+        gameBoard.board[position] = currentPlayer.marker;
+        gameBoard.display();
+        if (checkGameOver()) {
+            gameOver = true;
+            readline.close()
+        } else {
+            switchPlayer();
+            startGame();
+        }
+    } else {
+        console.log('Invalid move. Please try again')
+        startGame();
     }
 }
 
@@ -81,3 +97,7 @@ function checkTies() {
     }
     return false;
 }
+
+gameBoard.reset();
+gameBoard.display();
+startGame();
