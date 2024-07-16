@@ -49,7 +49,7 @@ function playerMove(position) {
         gameBoard.display();
         if (checkGameOver()) {
             gameOver = true;
-            rl.close()
+            rl.close();
         } else {
             switchPlayer();
             startGame();
@@ -72,15 +72,15 @@ function checkGameOver() {
 // Function that checks for all winning 3-in-a-rows and tied games
 function checkWins() {
     const wins = [
-        [0,1,2], [3,4,5], [6,7,8],
-        [0,3,6], [1,4,7], [2,5,8],
-        [0,4,8], [2,4,6]
-    ]
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
 
-    for (const patterns in wins) {
-        const [a,b,c] = patterns;
-        if (gameBoard.board[a] && gameBoard.board[a] === gameBoard.board[b] && gameBoard.board[a] === gameBoard.board[c]) {
-            console.log(`${currentPlayer.name} wins!`)
+    for (const pattern of wins) {
+        const [a, b, c] = pattern;
+        if (gameBoard.board[a] !== ' ' && gameBoard.board[a] === gameBoard.board[b] && gameBoard.board[a] === gameBoard.board[c]) {
+            console.log(`${currentPlayer.name} wins!`);
             return true;
         }
     }
