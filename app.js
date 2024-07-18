@@ -47,7 +47,20 @@ const gameDisplay = {
 
 // Function that handles cell clicks
 function cellClicks(e) {
-
+    if (gameOver) {
+        return;
+    }
+    const index = e.target.getAttribute('data-index');
+    if (gameBoard.update(index, currentPlayer.marker)) {
+        gameBoard.display();
+        if (checkGameOver()) {
+            gameOver = true;
+        } else {
+            switchPlayer();
+        }
+    } else {
+        console.log('Invalid move. Please try again.');
+    }
 }
 
 function switchPlayer() {
