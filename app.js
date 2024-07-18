@@ -15,7 +15,9 @@ currentPlayer = player1;
 // Create gameboard as an array inside of object
 const gameBoard = {
     board: [' ',' ',' ',' ',' ',' ',' ',' ','' ],
-    display: gameDisplay.boardDisplay(this.board),
+    display: function() {
+        gameDisplay.boardDisplay(this.board)
+    },
     reset: function() {
         this.board = [' ',' ',' ',' ',' ',' ',' ',' ',' '];
     }
