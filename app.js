@@ -15,13 +15,7 @@ currentPlayer = player1;
 // Create gameboard as an array inside of object
 const gameBoard = {
     board: [' ',' ',' ',' ',' ',' ',' ',' ','' ],
-    display: function() {
-        console.log(`${this.board[0]} | ${this.board[1]} | ${this.board[2]}`)
-        console.log(`---------`)
-        console.log(`${this.board[3]} | ${this.board[4]} | ${this.board[5]}`)
-        console.log(`---------`)
-        console.log(`${this.board[6]} | ${this.board[7]} | ${this.board[8]}`)
-    },
+    display: gameDisplay.boardDisplay(this.board),
     reset: function() {
         this.board = [' ',' ',' ',' ',' ',' ',' ',' ',' '];
     }
@@ -73,6 +67,11 @@ function playerMove(position) {
         console.log('Invalid move. Please try again')
         startGame();
     }
+}
+
+// Function that handles cell clicks
+function cellClicks(e) {
+
 }
 
 function switchPlayer() {
