@@ -27,6 +27,21 @@ const gameBoard = {
     }
 };
 
+// Object that displays moves in cells
+const gameDisplay = {
+    cells: document.querySelectorAll('.cell'),
+    boardDisplay: function(board) {
+        this.cells.forEach((cell, index) => {
+            cell.textContent = board[index];
+        })
+    },
+    render: function() {
+        this.cells.forEach((cell) => {
+            cell.addEventListener('click', cellClicks);
+        })
+    }
+}
+
 // Function that receives player input and switches between players after each move
 const readline = require("readline");
 
