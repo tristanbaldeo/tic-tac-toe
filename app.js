@@ -18,6 +18,13 @@ const gameBoard = {
     display: function() {
         gameDisplay.boardDisplay(this.board)
     },
+    update: function(index, marker) {
+        if (this.board[index] === ' ') {
+            this.board[index] = marker;
+            return true;
+        }
+        return false;
+    },
     reset: function() {
         this.board = [' ',' ',' ',' ',' ',' ',' ',' ',' '];
     }
@@ -35,39 +42,6 @@ const gameDisplay = {
         this.cells.forEach((cell) => {
             cell.addEventListener('click', cellClicks);
         })
-    }
-}
-
-// Function that receives player input and switches between players after each move
-const readline = require("readline");
-
-let rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-});
-
-function startGame() {
-    if (!gameOver) {
-        rl.question(`${currentPlayer.name}, enter your move (1-9): `, (move) => {
-            playerMove(parseInt(move));
-        });
-    }
-}
-
-function playerMove(position) {
-    if (gameBoard.board[position - 1] === ' ') {
-        gameBoard.board[position - 1] = currentPlayer.marker;
-        gameBoard.display();
-        if (checkGameOver()) {
-            gameOver = true;
-            rl.close();
-        } else {
-            switchPlayer();
-            startGame();
-        }
-    } else {
-        console.log('Invalid move. Please try again')
-        startGame();
     }
 }
 
@@ -113,4 +87,4 @@ function checkTies() {
 
 gameBoard.reset();
 gameBoard.display();
-startGame();
+gameDisplay.render();
