@@ -98,6 +98,15 @@ function checkTies() {
     return false;
 }
 
+// Button that restarts game upon selection of new game button
+const newGame = document.getElementById("new-game-button")
+newGame.addEventListener('click', () => {
+    gameOver = false;
+    gameBoard.reset();
+    gameBoard.display();
+    gameDisplay.render();
+});
+
 gameBoard.reset();
 gameBoard.display();
 gameDisplay.render();
