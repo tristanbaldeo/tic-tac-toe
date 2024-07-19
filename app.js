@@ -65,6 +65,7 @@ function cellClicks(e) {
 
 function switchPlayer() {
     currentPlayer = currentPlayer == player1 ? player2 : player1
+    document.querySelector(".game-result").textContent = `Turn: ${currentPlayer.name}`;
 }
 
 // Function that checks for when game is over
@@ -83,7 +84,7 @@ function checkWins() {
     for (const pattern of wins) {
         const [a, b, c] = pattern;
         if (gameBoard.board[a] !== ' ' && gameBoard.board[a] === gameBoard.board[b] && gameBoard.board[a] === gameBoard.board[c]) {
-            console.log(`${currentPlayer.name} wins!`);
+            document.querySelector(".game-result").textContent = `${currentPlayer.name} wins!`;
             return true;
         }
     }
@@ -92,7 +93,7 @@ function checkWins() {
 
 function checkTies() {
     if (!gameBoard.board.includes(' ')) {
-        console.log("It's a tie!");
+        document.querySelector(".game-result").textContent = `It's a tie!`;
         return true;
     }
     return false;
@@ -105,8 +106,10 @@ newGame.addEventListener('click', () => {
     gameBoard.reset();
     gameBoard.display();
     gameDisplay.render();
+    document.querySelector(".game-result").textContent = `Turn: ${currentPlayer.name}`;
 });
 
 gameBoard.reset();
 gameBoard.display();
 gameDisplay.render();
+document.querySelector(".game-result").textContent = `Turn: ${currentPlayer.name}`;
